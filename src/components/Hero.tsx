@@ -8,8 +8,7 @@ import {
   GraduationCap, 
   MapPin, 
   Check, 
-  Copy,
-  Cpu
+  Copy
 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { GitHubIcon, LinkedInIcon } from './Icons';
@@ -31,8 +30,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
     <section id="home" className="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
       
       {/* Background Orbital Line Visual */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-purple-500/10 rounded-full pointer-events-none animate-spin-slow" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-purple-500/15 rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] border border-purple-500/10 rounded-full pointer-events-none animate-spin-slow" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] border border-purple-500/15 rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -146,62 +145,67 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
 
           </div>
 
-          {/* Right Column: Abstract Developer Terminal Visual */}
-          <div className="lg:col-span-5 w-full">
-            <div className="relative group">
+          {/* Right Column: Real Profile Photo Portrait Card & Interactive Terminal */}
+          <div className="lg:col-span-5 w-full space-y-6">
+            
+            {/* Real Profile Photo Portrait Presentation */}
+            <div className="relative group max-w-sm mx-auto lg:max-w-none">
               
-              {/* Neon Glow Backdrop */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl blur-2xl opacity-40 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
+              {/* Purple Neon Glow Backdrop */}
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-600 rounded-3xl blur-xl opacity-60 group-hover:opacity-90 transition duration-700" />
 
-              {/* Floating Glass Terminal Window */}
-              <div className="relative glass-panel rounded-2xl overflow-hidden border border-purple-500/30 shadow-2xl shadow-purple-950/60 card-tilt">
-                
-                {/* Terminal Header */}
-                <div className="bg-[#080414] px-4 py-3 border-b border-purple-500/20 flex items-center justify-between">
+              {/* Glass Frame Container */}
+              <div className="relative glass-panel rounded-3xl p-3.5 border border-purple-500/40 shadow-2xl shadow-purple-950/80 card-tilt overflow-hidden">
+                <div className="relative w-full aspect-[4/4.5] sm:aspect-[4/4.2] rounded-2xl overflow-hidden border border-purple-500/30">
+                  <img
+                    src="/profile.jpg"
+                    alt="Madhan M - Software Engineer and Full-Stack Developer"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  
+                  {/* Subtle Gradient Vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06020e] via-transparent to-transparent opacity-75 pointer-events-none" />
+
+                  {/* Floating Identity Status Overlay */}
+                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-2xl glass-panel border border-purple-500/40 backdrop-blur-xl flex items-center justify-between text-xs font-mono-code shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-purple-500"></span>
+                      </span>
+                      <span className="text-white font-bold tracking-tight">Madhan M</span>
+                    </div>
+                    <span className="text-purple-300 font-semibold px-2 py-0.5 rounded bg-purple-950/80 border border-purple-500/30">
+                      Software Engineer
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Terminal Shell Mockup */}
+            <div className="relative group max-w-sm mx-auto lg:max-w-none">
+              <div className="relative glass-panel rounded-2xl overflow-hidden border border-purple-500/30 shadow-xl shadow-purple-950/50">
+                <div className="bg-[#080414] px-4 py-2.5 border-b border-purple-500/20 flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
                   </div>
                   <div className="flex items-center gap-1.5 text-xs font-mono-code text-purple-300">
                     <Terminal className="w-3.5 h-3.5 text-purple-400" />
                     <span>madhan@portfolio:~</span>
                   </div>
-                  <div className="w-12" />
+                  <div className="w-8" />
                 </div>
-
-                {/* Shell Interface Content */}
-                <div className="p-6 font-mono-code text-xs sm:text-sm bg-[#06020e]/95 text-slate-200 leading-relaxed overflow-x-auto min-h-[300px] space-y-2">
-                  <div className="text-purple-400">&gt; madhan@portfolio:~ $ npm run build</div>
-                  <div className="text-slate-400">[info] compiling full-stack modules...</div>
-                  <div className="text-slate-400">[info] indexing React, TypeScript, Node.js &amp; APIs...</div>
-                  <div className="text-emerald-400 font-bold">&gt; deployment successful</div>
-                  
-                  <div className="pt-3 border-t border-purple-900/40 text-xs space-y-1">
-                    <div><span className="text-purple-400">developer</span>: <span className="text-white">Madhan M</span></div>
-                    <div><span className="text-purple-400">college</span>: <span className="text-slate-300">PSG College of Technology</span></div>
-                    <div><span className="text-purple-400">stack</span>: <span className="text-slate-300">Python, React, Node.js, SQL, OpenAPI</span></div>
-                    <div><span className="text-purple-400">dsaSolved</span>: <span className="text-amber-400">250+ Problems</span></div>
-                    <div><span className="text-purple-400">status</span>: <span className="text-emerald-400 font-bold">Available for Hiring 🚀</span></div>
-                  </div>
-
-                  <div className="pt-2 flex items-center gap-2 text-purple-300">
-                    <Cpu className="w-4 h-4 text-purple-400 animate-spin-slow" />
-                    <span className="animate-pulse">_</span>
-                  </div>
+                <div className="p-4 font-mono-code text-xs bg-[#06020e]/95 text-slate-200 space-y-1">
+                  <div className="text-purple-400">&gt; status: open for opportunities</div>
+                  <div className="text-emerald-400 font-bold">&gt; candidate: Madhan M (PSG Tech)</div>
+                  <div className="text-slate-400">&gt; stack: Full-Stack Web, REST APIs, DSA</div>
                 </div>
-
-                {/* Footer Bar */}
-                <div className="bg-[#080414] px-4 py-2 border-t border-purple-500/20 flex items-center justify-between text-[11px] font-mono-code text-slate-500">
-                  <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block shadow-[0_0_6px_#34d399]" />
-                    Node v20.x • Production
-                  </span>
-                  <span className="text-purple-400 font-mono-code">Full-Stack Stack</span>
-                </div>
-
               </div>
             </div>
+
           </div>
 
         </div>
