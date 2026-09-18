@@ -4,70 +4,63 @@ import { EDUCATION_LIST } from '../data/portfolioData';
 
 export const Education: React.FC = () => {
   return (
-    <section id="education" className="py-24 relative z-10">
+    <section id="education" className="py-28 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono-code text-cyan-400 uppercase tracking-widest">
-            <GraduationCap className="w-3.5 h-3.5" />
-            Academic Foundation
+        <div className="text-center max-w-3xl mx-auto mb-20 space-y-3">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono-code text-purple-300 uppercase tracking-widest">
+            <GraduationCap className="w-3.5 h-3.5 text-purple-400" />
+            Academic Education
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Education <span className="bg-gradient-text">Timeline</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Education <span className="gradient-neon-violet text-glow-purple">Background</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
-            Formal academic background in Information Technology and Computer Engineering.
+          <p className="text-slate-300 text-sm sm:text-base">
+            Formal education in Information Technology and Computer Engineering.
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-indigo-500 mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto rounded-full shadow-[0_0_12px_#a855f7]" />
         </div>
 
-        {/* Education Timeline */}
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-8 relative before:absolute before:inset-0 before:left-4 sm:before:left-1/2 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-cyan-500 before:via-indigo-500 before:to-slate-800">
-            {EDUCATION_LIST.map((edu, index) => (
-              <div
-                key={index}
-                className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
-              >
-                {/* Timeline Node Dot */}
-                <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-slate-950 border-2 border-cyan-400 flex items-center justify-center z-10 shadow-lg shadow-cyan-500/30 group-hover:scale-110 transition-all">
-                  <BookOpen className="w-4 h-4 text-cyan-400" />
-                </div>
-
-                {/* Card Content Box */}
-                <div className="ml-12 sm:ml-0 w-full sm:w-[calc(50%-2.5rem)]">
-                  <div className="glass-panel p-6 sm:p-7 rounded-2xl border border-slate-800/80 glass-panel-hover space-y-4">
-                    
-                    <div className="space-y-1">
-                      <span className="inline-block px-2.5 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono-code font-semibold">
-                        {edu.duration}
-                      </span>
-                      <h3 className="text-xl font-bold text-white tracking-tight">
-                        {edu.institution}
-                      </h3>
-                      <p className="text-base font-semibold text-cyan-300">
-                        {edu.degree}
-                      </p>
-                    </div>
-
-                    <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800/80 text-xs font-mono-code">
-                      <div className="flex items-center gap-1.5 text-emerald-400 font-bold bg-emerald-500/10 px-3 py-1 rounded-lg border border-emerald-500/20">
-                        <Award className="w-3.5 h-3.5" />
-                        <span>{edu.grade}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-slate-400">
-                        <MapPin className="w-3.5 h-3.5 text-slate-400" />
-                        <span>{edu.location}</span>
-                      </div>
-                    </div>
-
+        {/* Vertical Elegant Education Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {EDUCATION_LIST.map((edu, idx) => (
+            <div
+              key={idx}
+              className="glass-panel p-8 rounded-3xl border border-purple-500/25 glass-panel-hover flex flex-col justify-between space-y-6 card-tilt"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="inline-block px-3 py-1 rounded-full bg-purple-950/80 border border-purple-500/30 text-purple-300 text-xs font-mono-code font-bold">
+                    {edu.duration}
+                  </span>
+                  <div className="p-2.5 rounded-2xl bg-purple-950/60 border border-purple-500/20 text-purple-400">
+                    <BookOpen className="w-5 h-5" />
                   </div>
                 </div>
 
+                <div>
+                  <h3 className="text-2xl font-extrabold text-white tracking-tight mb-1">
+                    {edu.institution}
+                  </h3>
+                  <p className="text-base font-semibold text-purple-300">
+                    {edu.degree}
+                  </p>
+                </div>
               </div>
-            ))}
-          </div>
+
+              <div className="flex items-center justify-between pt-4 border-t border-purple-900/40 text-xs font-mono-code">
+                <div className="flex items-center gap-1.5 font-bold text-amber-300 bg-amber-950/40 px-3 py-1.5 rounded-xl border border-amber-500/30">
+                  <Award className="w-4 h-4 text-amber-400" />
+                  <span>{edu.grade}</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-slate-400">
+                  <MapPin className="w-4 h-4 text-purple-400" />
+                  <span>{edu.location}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
       </div>

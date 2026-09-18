@@ -28,44 +28,44 @@ export const Skills: React.FC = () => {
     : SKILL_CATEGORIES;
 
   return (
-    <section id="skills" className="py-24 relative z-10 bg-slate-950/60">
+    <section id="skills" className="py-28 relative z-10 bg-[#06020e]/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono-code text-cyan-400 uppercase tracking-widest">
-            <Sparkles className="w-3.5 h-3.5" />
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono-code text-purple-300 uppercase tracking-widest">
+            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
             Technical Stack
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Skills & <span className="bg-gradient-text">Competencies</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Skills &amp; <span className="gradient-neon-violet text-glow-purple">Proficiencies</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
-            Categorized technical toolkit acquired through academic coursework, internship projects, and hands-on application development.
+          <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+            Technical competencies acquired through B.Tech Information Technology coursework, software development internship, and project execution.
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-indigo-500 mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto rounded-full shadow-[0_0_12px_#a855f7]" />
         </div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-14">
           <button
             onClick={() => setSelectedCategory(null)}
-            className={`px-4 py-2 rounded-xl text-xs font-mono-code transition-all ${
+            className={`px-4 py-2 rounded-xl text-xs font-mono-code font-bold transition-all ${
               selectedCategory === null
-                ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20'
-                : 'bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700'
+                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-600/30 scale-105'
+                : 'bg-purple-950/40 border border-purple-500/20 text-slate-300 hover:text-white hover:border-purple-500/40'
             }`}
           >
-            All Skills ({SKILL_CATEGORIES.reduce((acc, c) => acc + c.skills.length, 0)})
+            All Categories ({SKILL_CATEGORIES.reduce((acc, c) => acc + c.skills.length, 0)})
           </button>
           {SKILL_CATEGORIES.map((category) => (
             <button
               key={category.title}
               onClick={() => setSelectedCategory(category.title)}
-              className={`px-4 py-2 rounded-xl text-xs font-mono-code transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs font-mono-code font-bold transition-all ${
                 selectedCategory === category.title
-                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20'
-                  : 'bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700'
+                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-600/30 scale-105'
+                  : 'bg-purple-950/40 border border-purple-500/20 text-slate-300 hover:text-white hover:border-purple-500/40'
               }`}
             >
               {category.title}
@@ -73,46 +73,58 @@ export const Skills: React.FC = () => {
           ))}
         </div>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Skills Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
           {filteredCategories.map((category) => {
             const IconComponent = iconMap[category.iconName] || Layers;
             return (
               <div
                 key={category.title}
-                className="glass-panel p-6 rounded-2xl border border-slate-800/80 glass-panel-hover flex flex-col justify-between"
+                className="glass-panel p-7 rounded-3xl border border-purple-500/25 glass-panel-hover flex flex-col justify-between"
               >
                 <div>
-                  {/* Category Header */}
-                  <div className="flex items-center gap-3 mb-5 pb-4 border-b border-slate-800/80">
-                    <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+                  {/* Category Title Header */}
+                  <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-purple-900/40">
+                    <div className="p-3 rounded-2xl bg-purple-950/60 border border-purple-500/30 text-purple-400">
                       <IconComponent className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white tracking-tight">{category.title}</h3>
-                      <p className="text-xs text-slate-400 font-mono-code">
-                        {category.skills.length} core items
+                      <h3 className="text-sm font-bold text-white tracking-wider font-mono-code">{category.title}</h3>
+                      <p className="text-[11px] text-slate-400 font-mono-code">
+                        {category.skills.length} core technologies
                       </p>
                     </div>
                   </div>
 
-                  {/* Skills Tag Cloud */}
+                  {/* Skills Pills Matrix */}
                   <div className="flex flex-wrap gap-2.5">
-                    {category.skills.map((skill) => (
-                      <div
-                        key={skill.name}
-                        className="group relative flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/40 hover:bg-slate-800/90 transition-all cursor-default"
-                      >
-                        <span className="text-xs font-medium text-slate-200 group-hover:text-cyan-300 transition-colors">
-                          {skill.name}
-                        </span>
-                        {skill.level && (
-                          <span className="text-[10px] font-mono-code px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 group-hover:text-cyan-400 border border-slate-700/50">
+                    {category.skills.map((skill) => {
+                      const isBeginner = skill.level === 'Beginner';
+                      return (
+                        <div
+                          key={skill.name}
+                          className={`group relative flex items-center justify-between gap-3 px-4 py-2.5 rounded-2xl transition-all cursor-default ${
+                            isBeginner
+                              ? 'bg-purple-950/30 border border-purple-900/40 hover:border-amber-500/40'
+                              : 'bg-purple-950/50 border border-purple-500/20 hover:border-purple-400/60 hover:shadow-md hover:shadow-purple-500/20'
+                          }`}
+                        >
+                          <span className="text-xs font-semibold text-slate-200 group-hover:text-purple-300 transition-colors">
+                            {skill.name}
+                          </span>
+
+                          <span
+                            className={`text-[10px] font-mono-code font-bold px-2 py-0.5 rounded-md border ${
+                              isBeginner
+                                ? 'bg-amber-950/40 border-amber-500/30 text-amber-300'
+                                : 'bg-purple-900/40 border-purple-500/30 text-purple-300'
+                            }`}
+                          >
                             {skill.level}
                           </span>
-                        )}
-                      </div>
-                    ))}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

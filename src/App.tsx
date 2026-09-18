@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { BackgroundParticles } from './components/BackgroundParticles';
+import { MouseGlow } from './components/MouseGlow';
+import { BackgroundCanvas } from './components/BackgroundCanvas';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -18,14 +19,17 @@ export const App: React.FC = () => {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-slate-950">
-      {/* Background visual canvas & ambient grids */}
-      <BackgroundParticles />
+    <div className="relative min-h-screen bg-[#04020a] text-slate-100 selection:bg-purple-600 selection:text-white">
+      {/* Dynamic Cursor Spotlight Tracking */}
+      <MouseGlow />
 
-      {/* Main Sticky Header Navbar */}
+      {/* Dark Purple Radial Spotlight & Floating Particles Canvas */}
+      <BackgroundCanvas />
+
+      {/* Minimal Sticky Header Navbar */}
       <Navbar onOpenResume={() => setResumeModalOpen(true)} />
 
-      {/* Main Page Content */}
+      {/* Main Sections */}
       <main className="relative z-10">
         <Hero onOpenResume={() => setResumeModalOpen(true)} />
         <About />
@@ -39,10 +43,10 @@ export const App: React.FC = () => {
         <Contact onOpenResume={() => setResumeModalOpen(true)} />
       </main>
 
-      {/* Page Footer */}
+      {/* Footer */}
       <Footer />
 
-      {/* Interactive Resume View / Download Modal */}
+      {/* Resume Document Modal */}
       <ResumeModal
         isOpen={resumeModalOpen}
         onClose={() => setResumeModalOpen(false)}

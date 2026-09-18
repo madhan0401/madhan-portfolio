@@ -4,186 +4,312 @@ import {
   ExternalLink, 
   CheckCircle2, 
   Star,
-  Network
+  Network,
+  ShieldCheck,
+  QrCode,
+  Users,
+  Layers
 } from 'lucide-react';
-import { PROJECTS, type Project } from '../data/portfolioData';
+import { PROJECTS } from '../data/portfolioData';
 import { ArchitectureModal } from './ArchitectureModal';
 import { GitHubIcon } from './Icons';
 
 export const Projects: React.FC = () => {
   const [architectureOpen, setArchitectureOpen] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState<'all' | 'fullstack' | 'api' | 'web'>('all');
-
-  const filteredProjects = selectedFilter === 'all'
-    ? PROJECTS
-    : PROJECTS.filter((p: Project) => p.category === selectedFilter);
 
   return (
-    <section id="projects" className="py-24 relative z-10 bg-slate-950/60">
+    <section id="projects" className="py-28 relative z-10 bg-[#06020e]/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono-code text-cyan-400 uppercase tracking-widest">
-            <FolderGit2 className="w-3.5 h-3.5" />
-            Featured Software Showcase
+        <div className="text-center max-w-3xl mx-auto mb-20 space-y-3">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono-code text-purple-300 uppercase tracking-widest">
+            <FolderGit2 className="w-3.5 h-3.5 text-purple-400" />
+            Selected Work
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Key Engineering <span className="bg-gradient-text">Projects</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Key Software <span className="gradient-neon-violet text-glow-purple">Projects</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
-            Real-world full-stack web applications, API specifications, client SDK tools, and backend integrations.
+          <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+            Full-stack web applications, REST API specifications, multi-language SDK automation, and database systems.
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-indigo-500 mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto rounded-full shadow-[0_0_12px_#a855f7]" />
         </div>
 
-        {/* Category Filters */}
-        <div className="flex justify-center gap-2 mb-12">
-          <button
-            onClick={() => setSelectedFilter('all')}
-            className={`px-4 py-2 rounded-xl text-xs font-mono-code transition-all ${
-              selectedFilter === 'all'
-                ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20'
-                : 'bg-slate-900 border border-slate-800 text-slate-300 hover:text-white'
-            }`}
-          >
-            All Projects ({PROJECTS.length})
-          </button>
-          <button
-            onClick={() => setSelectedFilter('fullstack')}
-            className={`px-4 py-2 rounded-xl text-xs font-mono-code transition-all ${
-              selectedFilter === 'fullstack'
-                ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20'
-                : 'bg-slate-900 border border-slate-800 text-slate-300 hover:text-white'
-            }`}
-          >
-            Full-Stack Apps
-          </button>
-          <button
-            onClick={() => setSelectedFilter('api')}
-            className={`px-4 py-2 rounded-xl text-xs font-mono-code transition-all ${
-              selectedFilter === 'api'
-                ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20'
-                : 'bg-slate-900 border border-slate-800 text-slate-300 hover:text-white'
-            }`}
-          >
-            API & Infrastructure
-          </button>
-        </div>
-
-        {/* Projects Showcase Stack */}
-        <div className="space-y-10">
-          {filteredProjects.map((project: Project) => (
-            <div
-              key={project.id}
-              className={`glass-panel rounded-2xl border transition-all duration-300 ${
-                project.featured
-                  ? 'border-cyan-500/50 shadow-xl shadow-cyan-950/40 bg-slate-900/80'
-                  : 'border-slate-800/80 glass-panel-hover'
-              }`}
-            >
-              <div className="p-6 sm:p-8 space-y-6">
-                
-                {/* Project Top Bar */}
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-3">
-                      {project.featured && (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono-code font-semibold">
-                          <Star className="w-3.5 h-3.5 fill-amber-400" />
-                          FEATURED PROJECT
-                        </span>
-                      )}
-                      <span className="text-xs font-mono-code text-cyan-400 uppercase tracking-wider">
-                        {project.tagline}
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                      {project.title}
-                    </h3>
-                  </div>
-
-                  {/* Project Action Links */}
-                  <div className="flex flex-wrap items-center gap-3">
-                    {project.architectureAvailable && (
-                      <button
-                        onClick={() => setArchitectureOpen(true)}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-500/10 border border-purple-500/40 text-purple-300 text-xs font-mono-code font-bold hover:bg-purple-500/20 hover:border-purple-400 transition-all shadow-md"
-                      >
-                        <Network className="w-4 h-4 text-purple-400" />
-                        View Architecture Diagram
-                      </button>
-                    )}
-
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono-code hover:text-cyan-300 hover:border-cyan-500/40 transition-all"
-                      >
-                        <GitHubIcon className="w-4 h-4 text-slate-400" />
-                        Code Repository
-                      </a>
-                    )}
-
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs font-mono-code hover:bg-cyan-400 transition-all shadow-md shadow-cyan-500/20"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Live Demo
-                      </a>
-                    )}
-                  </div>
+        {/* Asymmetric Alternating Project Showcase Stack */}
+        <div className="space-y-16">
+          
+          {/* PROJECT 1: CampusCare Hub (FEATURED) - Content Left, Visual Right */}
+          <div className="glass-panel p-8 sm:p-12 rounded-3xl border border-purple-500/40 shadow-2xl shadow-purple-950/40 card-tilt relative overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              {/* Left Content */}
+              <div className="lg:col-span-6 space-y-6">
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-xs font-mono-code font-bold">
+                    <Star className="w-3.5 h-3.5 fill-amber-300" />
+                    FEATURED PROJECT
+                  </span>
+                  <span className="text-xs font-mono-code text-purple-400 uppercase tracking-wider">
+                    {PROJECTS[0].tagline}
+                  </span>
                 </div>
 
-                {/* Description */}
-                <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-                  {project.description}
+                <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                  {PROJECTS[0].title}
+                </h3>
+
+                <p className="text-slate-300 text-base leading-relaxed">
+                  {PROJECTS[0].description}
                 </p>
 
                 {/* Features List */}
-                <div>
-                  <h4 className="text-xs font-mono-code text-slate-400 uppercase tracking-wider mb-3">
-                    Key Features & Technical Implementations:
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {project.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-950/70 border border-slate-800/60">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                        <span className="text-xs sm:text-sm text-slate-300 leading-snug">
-                          {feat}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  {PROJECTS[0].features.slice(0, 6).map((feat, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5 p-3 rounded-2xl bg-purple-950/40 border border-purple-500/15">
+                      <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                      <span className="text-xs text-slate-300 leading-snug">{feat}</span>
+                    </div>
+                  ))}
                 </div>
 
-                {/* Technologies Stack */}
-                <div className="pt-2">
-                  <span className="text-xs font-mono-code text-slate-400 uppercase tracking-wider block mb-2">
-                    Technologies Used:
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-200 text-xs font-mono-code"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-2 pt-3">
+                  {PROJECTS[0].technologies.map((tech) => (
+                    <span key={tech} className="px-3 py-1 rounded-xl bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-mono-code font-semibold">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
 
+                {/* Links */}
+                <div className="flex items-center gap-4 pt-4 border-t border-purple-900/40">
+                  <a
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-950/80 border border-purple-500/40 text-slate-300 text-xs font-mono-code hover:text-purple-300 hover:border-purple-400 transition-all"
+                  >
+                    <GitHubIcon className="w-4 h-4" />
+                    Code Repository
+                  </a>
+                  <a
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-xs font-mono-code hover:opacity-90 transition-all shadow-md shadow-purple-600/30"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Live Demo
+                  </a>
+                </div>
               </div>
+
+              {/* Right Abstract Dashboard UI Visual Representation */}
+              <div className="lg:col-span-6">
+                <div className="glass-panel p-6 rounded-2xl border border-purple-500/30 bg-[#070314]/90 space-y-4 shadow-xl">
+                  
+                  <div className="flex items-center justify-between pb-3 border-b border-purple-900/40 text-xs font-mono-code text-purple-300">
+                    <span className="flex items-center gap-2 font-bold text-white">
+                      <ShieldCheck className="w-4 h-4 text-purple-400" />
+                      CampusCare Portal Pipeline
+                    </span>
+                    <span className="px-2 py-0.5 rounded bg-purple-950 border border-purple-500/30 text-emerald-400">
+                      Active Analytics
+                    </span>
+                  </div>
+
+                  {/* Grievance Flow Diagram */}
+                  <div className="grid grid-cols-2 gap-3 text-xs font-mono-code">
+                    <div className="p-3.5 rounded-xl bg-purple-950/60 border border-purple-500/20 space-y-1">
+                      <div className="flex items-center gap-1.5 text-purple-300 font-bold">
+                        <Users className="w-3.5 h-3.5" /> Students / Staff
+                      </div>
+                      <p className="text-[11px] text-slate-400">QR-Based Grievance Submission</p>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-purple-950/60 border border-purple-500/20 space-y-1">
+                      <div className="flex items-center gap-1.5 text-indigo-300 font-bold">
+                        <QrCode className="w-3.5 h-3.5" /> Task Assignment
+                      </div>
+                      <p className="text-[11px] text-slate-400">Department Routing</p>
+                    </div>
+                  </div>
+
+                  {/* Live Status Board Mockup */}
+                  <div className="p-4 rounded-xl bg-[#0a051d] border border-purple-500/25 space-y-2 text-xs font-mono-code">
+                    <div className="flex justify-between text-slate-400 text-[11px]">
+                      <span>Complaint #CC-2026-89</span>
+                      <span className="text-purple-400">Supabase Auth Verified</span>
+                    </div>
+                    <div className="w-full bg-purple-950 rounded-full h-2 overflow-hidden">
+                      <div className="bg-gradient-to-r from-purple-500 to-indigo-500 h-full w-[85%] rounded-full shadow-[0_0_8px_#a855f7]" />
+                    </div>
+                    <div className="flex justify-between text-[11px] text-slate-300">
+                      <span>Status: In Resolution</span>
+                      <span className="text-emerald-400 font-bold">85% Processed</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
             </div>
-          ))}
+          </div>
+
+          {/* PROJECT 2: API Standardization & SDK Development - Content Right, Visual Left */}
+          <div className="glass-panel p-8 sm:p-12 rounded-3xl border border-purple-500/30 glass-panel-hover card-tilt">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              {/* Left Visual: Architecture Flow Diagram Mockup */}
+              <div className="lg:col-span-6 order-2 lg:order-1">
+                <div className="glass-panel p-6 rounded-2xl border border-purple-500/30 bg-[#070314]/90 space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-purple-900/40 text-xs font-mono-code text-purple-300">
+                    <span className="font-bold text-white flex items-center gap-2">
+                      <Network className="w-4 h-4 text-purple-400" /> API &amp; SDK Architecture
+                    </span>
+                    <span className="text-purple-400">A2 Ventures Internship</span>
+                  </div>
+
+                  <div className="space-y-3 text-xs font-mono-code">
+                    <div className="p-3 rounded-xl bg-purple-950/60 border border-purple-500/20 text-center text-white font-bold">
+                      REST API (Hydrozen.io &amp; Nitrozen.io)
+                    </div>
+                    <div className="flex justify-center text-purple-400">↓</div>
+                    <div className="p-3 rounded-xl bg-purple-900/50 border border-purple-500/40 text-center text-purple-200 font-bold shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                      OpenAPI Specification (OAS 3.0)
+                    </div>
+                    <div className="flex justify-center gap-12 text-purple-400">
+                      <span>↓</span>
+                      <span>↓</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="p-3 rounded-xl bg-purple-950/60 border border-purple-500/20 text-center text-slate-300 text-[11px]">
+                        SDKs: Go • Python • JS
+                      </div>
+                      <div className="p-3 rounded-xl bg-purple-950/60 border border-purple-500/20 text-center text-emerald-300 text-[11px]">
+                        Terraform Provider (IaC)
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => setArchitectureOpen(true)}
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-purple-950 border border-purple-500/40 text-purple-300 font-bold text-xs font-mono-code hover:bg-purple-900/50 transition-all"
+                  >
+                    <Layers className="w-4 h-4 text-purple-400" />
+                    Open Interactive Architecture Visualizer
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Content */}
+              <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
+                <span className="text-xs font-mono-code text-purple-400 uppercase tracking-wider">
+                  {PROJECTS[1].tagline}
+                </span>
+
+                <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                  {PROJECTS[1].title}
+                </h3>
+
+                <p className="text-slate-300 text-base leading-relaxed">
+                  {PROJECTS[1].description}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  {PROJECTS[1].features.map((feat, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5 p-3 rounded-2xl bg-purple-950/40 border border-purple-500/15">
+                      <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                      <span className="text-xs text-slate-300 leading-snug">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-3">
+                  {PROJECTS[1].technologies.map((tech) => (
+                    <span key={tech} className="px-3 py-1 rounded-xl bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-mono-code font-semibold">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* PROJECT 3: Recipe Recommendation Website - Content Left, Visual Right */}
+          <div className="glass-panel p-8 sm:p-12 rounded-3xl border border-purple-500/30 glass-panel-hover card-tilt">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              {/* Left Content */}
+              <div className="lg:col-span-6 space-y-6">
+                <span className="text-xs font-mono-code text-purple-400 uppercase tracking-wider">
+                  {PROJECTS[2].tagline}
+                </span>
+
+                <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                  {PROJECTS[2].title}
+                </h3>
+
+                <p className="text-slate-300 text-base leading-relaxed">
+                  {PROJECTS[2].description}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  {PROJECTS[2].features.map((feat, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5 p-3 rounded-2xl bg-purple-950/40 border border-purple-500/15">
+                      <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                      <span className="text-xs text-slate-300 leading-snug">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-3">
+                  {PROJECTS[2].technologies.map((tech) => (
+                    <span key={tech} className="px-3 py-1 rounded-xl bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-mono-code font-semibold">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-4 pt-4 border-t border-purple-900/40">
+                  <a
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-950/80 border border-purple-500/40 text-slate-300 text-xs font-mono-code hover:text-purple-300 transition-all"
+                  >
+                    <GitHubIcon className="w-4 h-4" />
+                    Code Repository
+                  </a>
+                  <a
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-xs font-mono-code hover:opacity-90 transition-all shadow-md shadow-purple-600/30"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+
+              {/* Right Culinary Preview Mockup */}
+              <div className="lg:col-span-6">
+                <div className="glass-panel p-6 rounded-2xl border border-purple-500/30 bg-[#070314]/90 space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-purple-900/40 text-xs font-mono-code text-purple-300">
+                    <span className="font-bold text-white">Culinary Recommendation UI</span>
+                    <span className="text-purple-400">Spoonacular API</span>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-purple-950/40 border border-purple-500/20 space-y-2 text-xs font-mono-code">
+                    <div className="text-purple-300 font-bold">&gt; GET /api/recipes/recommend</div>
+                    <div className="text-slate-300">Params: ingredients=["tomato", "basil"], time&lt;30m</div>
+                    <div className="text-emerald-400">&gt; Status 200 OK — 14 Recipes Matched</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
       </div>
